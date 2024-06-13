@@ -87,5 +87,6 @@ class Articles extends ResourceController
         }else{
             return $this->failNotFound('No Data Found with id '.$id);
         }
+    }
 
 }

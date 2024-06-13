@@ -68,4 +68,24 @@ class Articles extends ResourceController
         return $this->respond($response);
     }
 
+    public function delete($id = null)
+    {
+        $data = $this->model->getWhere(['id' => $id])->getResult();
+        if($data){
+
+            $this->model->where('id', $id)->delete();
+
+            $response = [
+                'status'   => 200,
+                'error'    => null,
+                'messages' => [
+                    'success' => 'Record id #:'.$id.'  deleted: '
+                ]
+            ];
+            return $this->respond($response);
+    
+        }else{
+            return $this->failNotFound('No Data Found with id '.$id);
+        }
+
 }
